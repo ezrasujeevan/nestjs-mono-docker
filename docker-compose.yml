@@ -1,0 +1,40 @@
+version: '3'
+services:
+  prisma-library:
+    container_name: prisma
+    build:
+      dockerfile: lib.dockerfile
+      args:
+        SERVICE_NAME: prisma
+    volumes:
+      - prismaVol:/app/dist/libs/prisma
+  database-library:
+    container_name: database
+    build:
+      dockerfile: lib.dockerfile
+      args:
+        SERVICE_NAME: database
+    volumes:
+      - dbVol:/app/dist/libs/database
+  api-gateway:
+    container_name: api-gateway
+    build:
+      dockerfile: app.dockerfile
+      args:
+        SERVICE_NAME: api-gateway
+    volumes:
+      - apiVol:/app
+      - dbVol:/app/dist/libs/database
+      - prismaVol:/app/dist/libs/prisma
+    depends_on:
+      - prisma-library
+      - database-library
+    ports:
+      - '3000:3000'
+    environment:
+      - PORT=3000
+
+volumes:
+  prismaVol:
+  dbVol:
+  apiVol:
