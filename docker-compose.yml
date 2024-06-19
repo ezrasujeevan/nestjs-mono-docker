@@ -1,40 +1,53 @@
 version: '3'
 services:
-  prisma-library:
-    container_name: prisma
-    build:
-      dockerfile: lib.dockerfile
-      args:
-        SERVICE_NAME: prisma
+  postgres:
+    image: postgres:alpine
+    container_name: postgres_nestjs
     volumes:
-      - prismaVol:/app/dist/libs/prisma
-  database-library:
-    container_name: database
-    build:
-      dockerfile: lib.dockerfile
-      args:
-        SERVICE_NAME: database
-    volumes:
-      - dbVol:/app/dist/libs/database
-  api-gateway:
-    container_name: api-gateway
-    build:
-      dockerfile: app.dockerfile
-      args:
-        SERVICE_NAME: api-gateway
-    volumes:
-      - apiVol:/app
-      - dbVol:/app/dist/libs/database
-      - prismaVol:/app/dist/libs/prisma
-    depends_on:
-      - prisma-library
-      - database-library
+      - ./pg-init-scripts:/docker-entrypoint-initdb.d
+      - pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
     ports:
-      - '3000:3000'
-    environment:
-      - PORT=3000
+      - "3001:5432"
+    env_file:
+      - .env-docker
+    restart: always
+  adminer:
+    image:  adminer:standalone
+    restart: always
+    ports:
+      - 3002:8080
+    depends_on:
+      - postgres
+    
+  mongo:
+    image: mongo
+    container_name: mongo_nestjs
+    ports:
+      - "3003:27017"
+    volumes:
+      - mongo_data:/data/db
+    restart: always
+    env_file:
+      - .env-docker
+  mongo-express:
+    image: mongo-express
+    container_name: mongo_express
+    restart: always
+    ports:
+      - 3004:8081
+    depends_on:
+      - mongo
+    env_file:
+      - .env-docker
 
 volumes:
-  prismaVol:
-  dbVol:
-  apiVol:
+  pg_data:
+  mongo_data:
+networks:
+  default:
+    driver: bridge

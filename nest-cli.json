@@ -31,22 +31,13 @@
         "tsConfigPath": "apps/cat-service/tsconfig.app.json"
       }
     },
-    "database": {
+    "logger": {
       "type": "library",
-      "root": "libs/database",
+      "root": "libs/logger",
       "entryFile": "index",
-      "sourceRoot": "libs/database/src",
+      "sourceRoot": "libs/logger/src",
       "compilerOptions": {
-        "tsConfigPath": "libs/database/tsconfig.lib.json"
-      }
-    },
-    "prisma": {
-      "type": "library",
-      "root": "libs/prisma",
-      "entryFile": "index",
-      "sourceRoot": "libs/prisma/src",
-      "compilerOptions": {
-        "tsConfigPath": "libs/prisma/tsconfig.lib.json"
+        "tsConfigPath": "libs/logger/tsconfig.lib.json"
       }
     }
   }

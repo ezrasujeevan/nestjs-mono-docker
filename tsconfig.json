@@ -29,6 +29,12 @@
       ],
       "@app/prisma/*": [
         "libs/prisma/src/*"
+      ],
+      "@app/logger": [
+        "libs/pino-logger/src"
+      ],
+      "@app/logger/*": [
+        "libs/pino-logger/src/*"
       ]
     }
   }

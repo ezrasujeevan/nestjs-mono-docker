@@ -1,11 +1,37 @@
 import { Module } from '@nestjs/common';
 import { ApiGatewayController } from './api-gateway.controller';
 import { ApiGatewayService } from './api-gateway.service';
-import { DatabaseModule } from '@app/database';
-import { PrismaModule } from '@app/prisma';
+import { LoggerModule } from 'nestjs-pino';
+import pino from 'pino';
 
 @Module({
-  imports: [DatabaseModule, PrismaModule],
+  imports: [
+    LoggerModule.forRoot({
+      pinoHttp: {
+        customProps: (req, res) => ({ context: 'HTTP' }),
+        timestamp: true,
+        transport: {
+          targets: [
+            {
+              target: 'pino-pretty',
+              options: {
+                singleLine: true,
+                colorizeObjects: true,
+              },
+            },
+            {
+              target: 'pino/file',
+              options: {
+                destination: './logs/api-gateway.log',
+                sync: true,
+
+              },
+            },
+          ],
+        },
+      },
+    }),
+  ],
   controllers: [ApiGatewayController],
   providers: [ApiGatewayService],
 })
