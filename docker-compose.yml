@@ -23,7 +23,6 @@ services:
       - 3002:8080
     depends_on:
       - postgres
-    
   mongo:
     image: mongo
     container_name: mongo_nestjs

@@ -23,3 +23,4 @@ EXPOSE $PORT
 
 # Start the application
 CMD [ "npm", "run", "start:dev", "$SERVICE_NAME" ]
+
