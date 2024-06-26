@@ -1,10 +1,17 @@
 {
-  "name": "my-nest-mono",
+  "name": "@ezrasujeevan/nestjs-mono-docker",
   "version": "0.0.1",
   "description": "",
   "author": "",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ezrasujeevan/nestjs-mono-docker"
+  },
+  "publishConfig": { 
+  "registry":"https://npm.pkg.github.com/@ezrasujeevan" 
+  }
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"apps/**/*.ts\" \"libs/**/*.ts\"",
