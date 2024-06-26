@@ -7,10 +7,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ezrasujeevan/nestjs-mono-docker"
+    "url": "git+https://github.com/ezrasujeevan/nestjs-mono-docker.git"
   },
-  "publishConfig": { 
-  "registry":"https://npm.pkg.github.com/@ezrasujeevan" 
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/@ezrasujeevan"
   },
   "scripts": {
     "build": "nest build",
