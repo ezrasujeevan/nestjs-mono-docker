@@ -2,8 +2,7 @@
   "name": "@ezrasujeevan/nestjs-mono-docker",
   "version": "0.0.1",
   "description": "",
-  "author": "",
-  "private": true,
+  "author": "ezra <ezra.sujeevan@gmail.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
