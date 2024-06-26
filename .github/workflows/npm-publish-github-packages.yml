@@ -4,7 +4,7 @@
 name: Node.js Package
 
 on:
-  wworkflow_dispatch:
+  workflow_dispatch:
     
 
 jobs:
