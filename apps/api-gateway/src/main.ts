@@ -4,9 +4,7 @@ import { Logger, LoggerErrorInterceptor } from 'nestjs-pino';
 
 async function bootstrap() {
   const port = process.env.PORT || 3000;
-  const app = await NestFactory.create(ApiGatewayModule,{ bufferLogs: true });
-  app.useLogger(app.get(Logger));
-  app.useGlobalInterceptors(new LoggerErrorInterceptor())
+  const app = await NestFactory.create(ApiGatewayModule);
   await app.listen(port);
 }
 bootstrap();

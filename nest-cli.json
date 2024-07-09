@@ -39,6 +39,15 @@
       "compilerOptions": {
         "tsConfigPath": "libs/logger/tsconfig.lib.json"
       }
+    },
+    "apps": {
+      "type": "application",
+      "root": "apps/stripe",
+      "entryFile": "main",
+      "sourceRoot": "apps/stripe/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/stripe/tsconfig.app.json"
+      }
     }
   }
 }

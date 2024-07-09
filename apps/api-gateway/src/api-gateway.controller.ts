@@ -9,4 +9,14 @@ export class ApiGatewayController {
   getHello(): string {
     return this.apiGatewayService.getHello();
   }
+
+  @Get('cat')
+  getCat(): Promise<any> {
+    return this.apiGatewayService.GetCat();
+  }
+
+  @Get('error')
+  getCatError(): Promise<any> {
+    return this.apiGatewayService.GetCatError();
+  }
 }
